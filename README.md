@@ -45,3 +45,8 @@ If you are in a VPN environment remember to tunnel 8080 port
 $ ssh user@ip_address -L8080:localhost:8080
 ```
 [How to tunnel in Putty](https://blog.devolutions.net/2017/4/how-to-configure-an-ssh-tunnel-on-putty) (for Windows users)
+
+### 5. Basic Nifi Usage
+
+This wiki page will cover the main proccess of NoHarm integration:
+[Basic Nifi Usage](https://github.com/noharm-ai/nifi-docker/wiki/Basic-Nifi-Usage)
