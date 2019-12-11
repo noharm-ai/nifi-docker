@@ -33,9 +33,8 @@ Inside container, stop the service. It will kick you out of the container.
 nifi@container_id:/opt/nifi/nifi-current$ ./bin/nifi.sh stop
 ```
 
-Restart you container: Find the container ID and start it again.
+Restart you container
 ```shell
-$ docker ps -a
 $ docker start nifi
 ```
 
