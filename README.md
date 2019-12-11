@@ -53,3 +53,9 @@ $ ssh user@ip_address -L8080:localhost:8080
 
 This wiki page will cover the main proccess of NoHarm integration:
 [Basic Nifi Usage](https://github.com/noharm-ai/nifi-docker/wiki/Basic-Nifi-Usage)
+
+### 6. Testing JDBC Connection
+
+- Download http://jdbcsql.sourceforge.net/
+- Run:  java -jar jdbcsql-1.0.zip -h hostname -p 1521 -U user -P pass -d service -m oracle "SELECT table_name FROM all_tables"
+
