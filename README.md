@@ -21,9 +21,9 @@ nifi@container_id:/opt/nifi/nifi-current$ wget https://hostname/nifi/ojdbc8.jar
 nifi@container_id:/opt/nifi/nifi-current$ wget https://jdbc.postgresql.org/download/postgresql-42.2.9.jar
 nifi@container_id:/opt/nifi/nifi-current$ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.10.0/nifi-kite-nar-1.10.0.nar
 ```
-- Update JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
-- Update JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
-- Update JDBC MySQL Driver at https://dev.mysql.com/downloads/connector/j/
+- Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
+- Updated JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
+- Updated JDBC MySQL Driver at https://dev.mysql.com/downloads/connector/j/
 
 ### 3. Restart Nifi Web Service
 
@@ -56,6 +56,6 @@ This wiki page will cover the main proccess of NoHarm integration:
 
 ### 6. Testing JDBC Connection
 
-- Download http://jdbcsql.sourceforge.net/
+- Download tool from http://jdbcsql.sourceforge.net/
 - Run:  java -jar jdbcsql-1.0.zip -h hostname -p 1521 -U user -P pass -d service -m oracle "SELECT table_name FROM all_tables"
 
