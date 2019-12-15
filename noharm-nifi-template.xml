@@ -1,135 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.3">
-    <description>Basic NoHarm Integration</description>
+    <description></description>
     <groupId>aebab826-016e-1000-8dbf-2a5f109f65ea</groupId>
     <name>noharm-nifi-template</name>
     <snippet>
-        <controllerServices>
-            <id>252f66b4-fbbc-30e5-0000-000000000000</id>
-            <parentGroupId>41468a01-3e14-336d-0000-000000000000</parentGroupId>
-            <bundle>
-                <artifact>nifi-record-serialization-services-nar</artifact>
-                <group>org.apache.nifi</group>
-                <version>1.10.0</version>
-            </bundle>
-            <comments></comments>
-            <descriptors>
-                <entry>
-                    <key>Schema Write Strategy</key>
-                    <value>
-                        <name>Schema Write Strategy</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-cache</key>
-                    <value>
-                        <identifiesControllerService>org.apache.nifi.serialization.RecordSchemaCacheService</identifiesControllerService>
-                        <name>schema-cache</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-access-strategy</key>
-                    <value>
-                        <name>schema-access-strategy</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-registry</key>
-                    <value>
-                        <identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
-                        <name>schema-registry</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-name</key>
-                    <value>
-                        <name>schema-name</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-version</key>
-                    <value>
-                        <name>schema-version</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-branch</key>
-                    <value>
-                        <name>schema-branch</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>schema-text</key>
-                    <value>
-                        <name>schema-text</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>compression-format</key>
-                    <value>
-                        <name>compression-format</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>cache-size</key>
-                    <value>
-                        <name>cache-size</name>
-                    </value>
-                </entry>
-                <entry>
-                    <key>encoder-pool-size</key>
-                    <value>
-                        <name>encoder-pool-size</name>
-                    </value>
-                </entry>
-            </descriptors>
-            <name>AvroRecordSetWriter</name>
-            <persistsState>false</persistsState>
-            <properties>
-                <entry>
-                    <key>Schema Write Strategy</key>
-                    <value>avro-embedded</value>
-                </entry>
-                <entry>
-                    <key>schema-cache</key>
-                </entry>
-                <entry>
-                    <key>schema-access-strategy</key>
-                    <value>inherit-record-schema</value>
-                </entry>
-                <entry>
-                    <key>schema-registry</key>
-                </entry>
-                <entry>
-                    <key>schema-name</key>
-                    <value>${schema.name}</value>
-                </entry>
-                <entry>
-                    <key>schema-version</key>
-                </entry>
-                <entry>
-                    <key>schema-branch</key>
-                </entry>
-                <entry>
-                    <key>schema-text</key>
-                    <value>${avro.schema}</value>
-                </entry>
-                <entry>
-                    <key>compression-format</key>
-                    <value>NONE</value>
-                </entry>
-                <entry>
-                    <key>cache-size</key>
-                    <value>1000</value>
-                </entry>
-                <entry>
-                    <key>encoder-pool-size</key>
-                    <value>32</value>
-                </entry>
-            </properties>
-            <state>ENABLED</state>
-            <type>org.apache.nifi.avro.AvroRecordSetWriter</type>
-        </controllerServices>
         <controllerServices>
             <id>28d4b1f3-04f4-3503-0000-000000000000</id>
             <parentGroupId>41468a01-3e14-336d-0000-000000000000</parentGroupId>
@@ -237,7 +111,7 @@
             <properties>
                 <entry>
                     <key>Database Connection URL</key>
-                    <value>jdbc:oracle:thin:@ip_address:port:service</value>
+                    <value>jdbc:oracle:thin:@ip_address:1521:service</value>
                 </entry>
                 <entry>
                     <key>Database Driver Class Name</key>
@@ -252,7 +126,7 @@
                 </entry>
                 <entry>
                     <key>Database User</key>
-                    <value>user</value>
+                    <value>database_user</value>
                 </entry>
                 <entry>
                     <key>Password</key>
@@ -383,7 +257,7 @@
             <type>org.apache.nifi.avro.AvroReader</type>
         </controllerServices>
         <controllerServices>
-            <id>88793787-b023-3246-0000-000000000000</id>
+            <id>bb8c0e86-b4c4-3ddc-0000-000000000000</id>
             <parentGroupId>41468a01-3e14-336d-0000-000000000000</parentGroupId>
             <bundle>
                 <artifact>nifi-dbcp-service-nar</artifact>
@@ -484,65 +358,57 @@
                     </value>
                 </entry>
             </descriptors>
-            <name>DBCPConnectionPool - MySQL</name>
+            <name>DBCPConnectionPool - PostgreSQL</name>
             <persistsState>false</persistsState>
             <properties>
                 <entry>
                     <key>Database Connection URL</key>
-                    <value>jdbc:mysql://ip_address/database</value>
+                    <value>jdbc:postgresql://ip_address/database</value>
                 </entry>
                 <entry>
                     <key>Database Driver Class Name</key>
-                    <value>com.mysql.jdbc.Driver</value>
+                    <value>org.postgresql.Driver</value>
                 </entry>
                 <entry>
                     <key>database-driver-locations</key>
-                    <value>/opt/nifi/nifi-current/lib/mysql-connector-java-8.0.18.jar</value>
+                    <value>/opt/nifi/nifi-current/lib/postgresql-42.2.9.jar</value>
                 </entry>
                 <entry>
                     <key>kerberos-credentials-service</key>
                 </entry>
                 <entry>
                     <key>Database User</key>
-                    <value>user</value>
+                    <value>database_user</value>
                 </entry>
                 <entry>
                     <key>Password</key>
                 </entry>
                 <entry>
                     <key>Max Wait Time</key>
-                    <value>500 millis</value>
                 </entry>
                 <entry>
                     <key>Max Total Connections</key>
-                    <value>8</value>
                 </entry>
                 <entry>
                     <key>Validation-query</key>
                 </entry>
                 <entry>
                     <key>dbcp-min-idle-conns</key>
-                    <value>0</value>
                 </entry>
                 <entry>
                     <key>dbcp-max-idle-conns</key>
-                    <value>8</value>
                 </entry>
                 <entry>
                     <key>dbcp-max-conn-lifetime</key>
-                    <value>-1</value>
                 </entry>
                 <entry>
                     <key>dbcp-time-between-eviction-runs</key>
-                    <value>-1</value>
                 </entry>
                 <entry>
                     <key>dbcp-min-evictable-idle-time</key>
-                    <value>30 mins</value>
                 </entry>
                 <entry>
                     <key>dbcp-soft-min-evictable-idle-time</key>
-                    <value>-1</value>
                 </entry>
             </properties>
             <state>ENABLED</state>
@@ -608,64 +474,13 @@
                     <zIndex>0</zIndex>
                 </connections>
                 <connections>
-                    <id>635c86e0-60c6-326f-0000-000000000000</id>
+                    <id>862c6215-70f3-36a0-0000-000000000000</id>
                     <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
                     <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
                     <backPressureObjectThreshold>10000</backPressureObjectThreshold>
                     <destination>
                         <groupId>48163914-f160-350f-0000-000000000000</groupId>
                         <id>822b15b5-a7fe-30b8-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </destination>
-                    <flowFileExpiration>0 sec</flowFileExpiration>
-                    <labelIndex>1</labelIndex>
-                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-                    <name></name>
-                    <selectedRelationships>success</selectedRelationships>
-                    <source>
-                        <groupId>48163914-f160-350f-0000-000000000000</groupId>
-                        <id>f737379f-7d59-3986-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </source>
-                    <zIndex>0</zIndex>
-                </connections>
-                <connections>
-                    <id>d70c54ad-7c3e-3491-0000-000000000000</id>
-                    <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
-                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-                    <destination>
-                        <groupId>48163914-f160-350f-0000-000000000000</groupId>
-                        <id>57c067d1-8eb1-34b8-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </destination>
-                    <flowFileExpiration>0 sec</flowFileExpiration>
-                    <labelIndex>1</labelIndex>
-                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
-                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
-                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
-                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
-                    <name></name>
-                    <selectedRelationships>failure</selectedRelationships>
-                    <selectedRelationships>success</selectedRelationships>
-                    <source>
-                        <groupId>48163914-f160-350f-0000-000000000000</groupId>
-                        <id>822b15b5-a7fe-30b8-0000-000000000000</id>
-                        <type>PROCESSOR</type>
-                    </source>
-                    <zIndex>0</zIndex>
-                </connections>
-                <connections>
-                    <id>fe8b6e89-c191-346a-0000-000000000000</id>
-                    <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
-                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
-                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
-                    <destination>
-                        <groupId>48163914-f160-350f-0000-000000000000</groupId>
-                        <id>f737379f-7d59-3986-0000-000000000000</id>
                         <type>PROCESSOR</type>
                     </destination>
                     <flowFileExpiration>0 sec</flowFileExpiration>
@@ -684,125 +499,11 @@
                     <zIndex>0</zIndex>
                 </connections>
                 <processors>
-                    <id>57c067d1-8eb1-34b8-0000-000000000000</id>
-                    <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
-                    <position>
-                        <x>536.0</x>
-                        <y>560.0</y>
-                    </position>
-                    <bundle>
-                        <artifact>nifi-standard-nar</artifact>
-                        <group>org.apache.nifi</group>
-                        <version>1.10.0</version>
-                    </bundle>
-                    <config>
-                        <bulletinLevel>WARN</bulletinLevel>
-                        <comments></comments>
-                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
-                        <descriptors>
-                            <entry>
-<key>Log Level</key>
-<value>
-    <name>Log Level</name>
-</value>
-                            </entry>
-                            <entry>
-<key>Log Payload</key>
-<value>
-    <name>Log Payload</name>
-</value>
-                            </entry>
-                            <entry>
-<key>Attributes to Log</key>
-<value>
-    <name>Attributes to Log</name>
-</value>
-                            </entry>
-                            <entry>
-<key>attributes-to-log-regex</key>
-<value>
-    <name>attributes-to-log-regex</name>
-</value>
-                            </entry>
-                            <entry>
-<key>Attributes to Ignore</key>
-<value>
-    <name>Attributes to Ignore</name>
-</value>
-                            </entry>
-                            <entry>
-<key>attributes-to-ignore-regex</key>
-<value>
-    <name>attributes-to-ignore-regex</name>
-</value>
-                            </entry>
-                            <entry>
-<key>Log prefix</key>
-<value>
-    <name>Log prefix</name>
-</value>
-                            </entry>
-                            <entry>
-<key>character-set</key>
-<value>
-    <name>character-set</name>
-</value>
-                            </entry>
-                        </descriptors>
-                        <executionNode>ALL</executionNode>
-                        <lossTolerant>false</lossTolerant>
-                        <penaltyDuration>30 sec</penaltyDuration>
-                        <properties>
-                            <entry>
-<key>Log Level</key>
-<value>info</value>
-                            </entry>
-                            <entry>
-<key>Log Payload</key>
-<value>false</value>
-                            </entry>
-                            <entry>
-<key>Attributes to Log</key>
-                            </entry>
-                            <entry>
-<key>attributes-to-log-regex</key>
-<value>.*</value>
-                            </entry>
-                            <entry>
-<key>Attributes to Ignore</key>
-                            </entry>
-                            <entry>
-<key>attributes-to-ignore-regex</key>
-                            </entry>
-                            <entry>
-<key>Log prefix</key>
-                            </entry>
-                            <entry>
-<key>character-set</key>
-<value>UTF-8</value>
-                            </entry>
-                        </properties>
-                        <runDurationMillis>0</runDurationMillis>
-                        <schedulingPeriod>0 sec</schedulingPeriod>
-                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
-                        <yieldDuration>1 sec</yieldDuration>
-                    </config>
-                    <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>Log Success</name>
-                    <relationships>
-                        <autoTerminate>true</autoTerminate>
-                        <name>success</name>
-                    </relationships>
-                    <state>STOPPED</state>
-                    <style/>
-                    <type>org.apache.nifi.processors.standard.LogAttribute</type>
-                </processors>
-                <processors>
                     <id>822b15b5-a7fe-30b8-0000-000000000000</id>
                     <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
                     <position>
-                        <x>1088.0</x>
-                        <y>336.0</y>
+                        <x>1032.0</x>
+                        <y>48.0</y>
                     </position>
                     <bundle>
                         <artifact>nifi-standard-nar</artifact>
@@ -810,8 +511,8 @@
                         <version>1.10.0</version>
                     </bundle>
                     <config>
-                        <bulletinLevel>WARN</bulletinLevel>
-                        <comments>Must have a fksetor-idhospital unique constraint to raise a PutDatabaseRecord Retry exception</comments>
+                        <bulletinLevel>ERROR</bulletinLevel>
+                        <comments>Must have a fksetor-fkhospital unique constraint to raise a PutDatabaseRecord Retry exception</comments>
                         <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
                         <descriptors>
                             <entry>
@@ -939,13 +640,14 @@
                             </entry>
                             <entry>
 <key>put-db-record-dcbp-service</key>
-<value>88793787-b023-3246-0000-000000000000</value>
+<value>bb8c0e86-b4c4-3ddc-0000-000000000000</value>
                             </entry>
                             <entry>
 <key>put-db-record-catalog-name</key>
                             </entry>
                             <entry>
 <key>put-db-record-schema-name</key>
+<value>#{schema.name}</value>
                             </entry>
                             <entry>
 <key>put-db-record-table-name</key>
@@ -1004,9 +706,9 @@
                         <yieldDuration>1 sec</yieldDuration>
                     </config>
                     <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>Try Insert into MySQL</name>
+                    <name>Try Insert into PostgreSQL</name>
                     <relationships>
-                        <autoTerminate>false</autoTerminate>
+                        <autoTerminate>true</autoTerminate>
                         <name>failure</name>
                     </relationships>
                     <relationships>
@@ -1014,7 +716,7 @@
                         <name>retry</name>
                     </relationships>
                     <relationships>
-                        <autoTerminate>false</autoTerminate>
+                        <autoTerminate>true</autoTerminate>
                         <name>success</name>
                     </relationships>
                     <state>STOPPED</state>
@@ -1156,7 +858,7 @@
                             </entry>
                             <entry>
 <key>Table Name</key>
-<value>TASY.ISCMPA_NOHARM_SETORES</value>
+<value>HOSPITAL_DEPARTMENTS</value>
                             </entry>
                             <entry>
 <key>Columns to Return</key>
@@ -1180,7 +882,7 @@
                             </entry>
                             <entry>
 <key>qdbt-max-rows</key>
-<value>0</value>
+<value>500</value>
                             </entry>
                             <entry>
 <key>qdbt-output-batch-size</key>
@@ -1365,8 +1067,8 @@
                     <id>b9c75049-b7c2-30b1-0000-000000000000</id>
                     <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
                     <position>
-                        <x>1088.0</x>
-                        <y>560.0</y>
+                        <x>1032.0</x>
+                        <y>336.0</y>
                     </position>
                     <bundle>
                         <artifact>nifi-standard-nar</artifact>
@@ -1503,13 +1205,14 @@
                             </entry>
                             <entry>
 <key>put-db-record-dcbp-service</key>
-<value>88793787-b023-3246-0000-000000000000</value>
+<value>bb8c0e86-b4c4-3ddc-0000-000000000000</value>
                             </entry>
                             <entry>
 <key>put-db-record-catalog-name</key>
                             </entry>
                             <entry>
 <key>put-db-record-schema-name</key>
+<value>#{schema.name}</value>
                             </entry>
                             <entry>
 <key>put-db-record-table-name</key>
@@ -1529,7 +1232,7 @@
                             </entry>
                             <entry>
 <key>put-db-record-update-keys</key>
-<value>idhospital, fksetor</value>
+<value>fksetor</value>
                             </entry>
                             <entry>
 <key>put-db-record-field-containing-sql</key>
@@ -1569,7 +1272,7 @@
                         <yieldDuration>1 sec</yieldDuration>
                     </config>
                     <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>Update MySQL on Conflict</name>
+                    <name>Update PostgreSQL on Conflict</name>
                     <relationships>
                         <autoTerminate>true</autoTerminate>
                         <name>failure</name>
@@ -1586,94 +1289,10 @@
                     <style/>
                     <type>org.apache.nifi.processors.standard.PutDatabaseRecord</type>
                 </processors>
-                <processors>
-                    <id>f737379f-7d59-3986-0000-000000000000</id>
-                    <parentGroupId>48163914-f160-350f-0000-000000000000</parentGroupId>
-                    <position>
-                        <x>1088.0</x>
-                        <y>48.0</y>
-                    </position>
-                    <bundle>
-                        <artifact>nifi-standard-nar</artifact>
-                        <group>org.apache.nifi</group>
-                        <version>1.10.0</version>
-                    </bundle>
-                    <config>
-                        <bulletinLevel>WARN</bulletinLevel>
-                        <comments></comments>
-                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
-                        <descriptors>
-                            <entry>
-<key>record-reader</key>
-<value>
-    <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
-    <name>record-reader</name>
-</value>
-                            </entry>
-                            <entry>
-<key>record-writer</key>
-<value>
-    <identifiesControllerService>org.apache.nifi.serialization.RecordSetWriterFactory</identifiesControllerService>
-    <name>record-writer</name>
-</value>
-                            </entry>
-                            <entry>
-<key>replacement-value-strategy</key>
-<value>
-    <name>replacement-value-strategy</name>
-</value>
-                            </entry>
-                            <entry>
-<key>/idhospital</key>
-<value>
-    <name>/idhospital</name>
-</value>
-                            </entry>
-                        </descriptors>
-                        <executionNode>ALL</executionNode>
-                        <lossTolerant>false</lossTolerant>
-                        <penaltyDuration>30 sec</penaltyDuration>
-                        <properties>
-                            <entry>
-<key>record-reader</key>
-<value>31e82cae-5926-397a-0000-000000000000</value>
-                            </entry>
-                            <entry>
-<key>record-writer</key>
-<value>252f66b4-fbbc-30e5-0000-000000000000</value>
-                            </entry>
-                            <entry>
-<key>replacement-value-strategy</key>
-<value>literal-value</value>
-                            </entry>
-                            <entry>
-<key>/idhospital</key>
-<value>2</value>
-                            </entry>
-                        </properties>
-                        <runDurationMillis>0</runDurationMillis>
-                        <schedulingPeriod>0 sec</schedulingPeriod>
-                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
-                        <yieldDuration>1 sec</yieldDuration>
-                    </config>
-                    <executionNodeRestricted>false</executionNodeRestricted>
-                    <name>Add Hospital Identifier</name>
-                    <relationships>
-                        <autoTerminate>true</autoTerminate>
-                        <name>failure</name>
-                    </relationships>
-                    <relationships>
-                        <autoTerminate>false</autoTerminate>
-                        <name>success</name>
-                    </relationships>
-                    <state>STOPPED</state>
-                    <style/>
-                    <type>org.apache.nifi.processors.standard.UpdateRecord</type>
-                </processors>
             </contents>
             <name>Department ETL</name>
             <variables/>
         </processGroups>
     </snippet>
-    <timestamp>12/03/2019 09:37:48 EST</timestamp>
+    <timestamp>12/15/2019 17:19:13 EST</timestamp>
 </template>
