@@ -19,6 +19,7 @@ nifi@container_id:/opt/nifi/nifi-current$ cd lib
 nifi@container_id:/opt/nifi/nifi-current$ wget https://hostname/nifi/mysql-connector-java-8.0.18.jar
 nifi@container_id:/opt/nifi/nifi-current$ wget https://hostname/nifi/ojdbc8.jar
 nifi@container_id:/opt/nifi/nifi-current$ wget https://jdbc.postgresql.org/download/postgresql-42.2.9.jar
+nifi@container_id:/opt/nifi/nifi-current$ wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
 nifi@container_id:/opt/nifi/nifi-current$ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.10.0/nifi-kite-nar-1.10.0.nar
 ```
 - Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
