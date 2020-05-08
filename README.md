@@ -45,7 +45,7 @@ Now you can access your Nifi web service at http://localhost:8080/nifi/
 
 If you are in a VPN environment remember to tunnel 8080 port
 ```shell
-$ ssh user@ip_address -L8080:localhost:8080
+$ ssh -f user@ip_address -L 8080:localhost:8080 -N
 ```
 [How to tunnel in Putty](https://blog.devolutions.net/2017/4/how-to-configure-an-ssh-tunnel-on-putty) (for Windows users)
 
