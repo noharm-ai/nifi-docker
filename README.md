@@ -6,7 +6,7 @@ Pull the latest version of Apache Nifi Docker, buuild and run
 
 ```shell
 $ docker pull apache/nifi
-$ docker run --name nifi -p 8080:8080 -d apache/nifi:latest
+$ docker run --name nifi -p 8080:8080 -d apache/nifi:latest --restart=always 
 ```
 
 ### 2. Download Connectors and Add Timezone
@@ -37,6 +37,11 @@ nifi@container_id:/opt/nifi/nifi-current$ ./bin/nifi.sh stop
 Restart you container
 ```shell
 $ docker start nifi
+```
+
+Update the restart policy
+```shell
+$ docker update --restart=always nifi
 ```
 
 ### 4. Access Nifi Web Service
