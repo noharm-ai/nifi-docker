@@ -44,6 +44,11 @@ Update the restart policy
 $ docker update --restart=always nifi
 ```
 
+Read current restart policy
+```shell
+docker inspect -f "{{ .HostConfig.RestartPolicy }}" nifi
+```
+
 ### 4. Access Nifi Web Service
 
 Now you can access your Nifi web service at http://localhost:8080/nifi/
