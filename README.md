@@ -14,7 +14,7 @@ $ docker run --name nifi -p 8080:8080 -d apache/nifi:latest --restart=always
 Dive into container shell, add timezone and download JARs & NARs
 ```shell
 $ docker exec -i -t nifi /bin/bash
-nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/New_York" >> conf/bootstrap.conf
+nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
 nifi@container_id:/opt/nifi/nifi-current$ cd lib
 nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://hostname/nifi/mysql-connector-java-8.0.18.jar
 nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://hostname/nifi/ojdbc8.jar
