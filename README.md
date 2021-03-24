@@ -5,8 +5,8 @@ NiFi docker container customization from the [official Apache Nifi Docker Image]
 Pull the latest version of Apache Nifi Docker, buuild and run
 
 ```shell
-$ docker pull apache/nifi
-$ docker run --name nifi -p 8080:8080 -d apache/nifi:latest --restart=always 
+$ docker pull apache/nifi:1.12.1
+$ docker run --name nifi -p 8080:8080 -d apache/nifi:1.12.1 --restart=always 
 ```
 
 ### 2. Download Connectors and Add Timezone
