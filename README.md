@@ -9,6 +9,14 @@ $ docker pull apache/nifi:1.12.1
 $ docker run --name nifi -p 8080:8080 -d apache/nifi:1.12.1 --restart=always 
 ```
 
+#### 1.2 Build Docker 1.16.1 HTTP
+
+```shell
+$ docker pull apache/nifi:1.16.1
+$ docker run --name nifi16 -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.16.1
+$ docker exec --user="root" -it nifi16 /bin/bash
+```
+
 ### 2. Download Connectors and Add Timezone
 
 Dive into container shell, add timezone and download JARs & NARs
