@@ -13,7 +13,7 @@ $ docker run --name nifi -p 8080:8080 -d apache/nifi:1.12.1 --restart=always
 
 ```shell
 $ docker pull apache/nifi:1.16.1
-$ docker run --name nifi16 -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.16.1
+$ docker run --name nifi16 -e NIFI_WEB_HTTP_PORT='8080' -e NIFI_SECURITY_USER_AUTHORIZER='managed-authorizer' -p 8080:8080 -d apache/nifi:1.16.1
 $ docker exec --user="root" -it nifi16 /bin/bash
 ```
 
