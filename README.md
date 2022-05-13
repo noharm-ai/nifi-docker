@@ -2,19 +2,11 @@
 NiFi docker container customization from the [official Apache Nifi Docker Image](https://hub.docker.com/r/apache/nifi)
 
 ### 1. Build Docker
-Pull the latest version of Apache Nifi Docker, buuild and run
-
-```shell
-$ docker pull apache/nifi:1.12.1
-$ docker run --name nifi -p 8080:8080 -d apache/nifi:1.12.1 --restart=always 
-```
-
-#### 1.2 Build Docker 1.16.1 HTTP
+Pull the latest version of Apache Nifi Docker, build and run
 
 ```shell
 $ docker pull apache/nifi:1.16.1
-$ docker run --name nifi16 -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.16.1
-$ docker exec --user="root" -it nifi16 /bin/bash
+$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.16.1 --restart=always 
 ```
 Entrar em http://localhost:8080/ pela aba anônima.
 
@@ -22,14 +14,14 @@ Entrar em http://localhost:8080/ pela aba anônima.
 
 Dive into container shell, add timezone and download JARs & NARs
 ```shell
-$ docker exec -i -t nifi /bin/bash
+$ docker exec --user="root" -it nifi /bin/bash
 nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
 nifi@container_id:/opt/nifi/nifi-current$ cd lib
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/21.1.0.0/ojdbc8-21.1.0.0.jar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://jdbc.postgresql.org/download/postgresql-42.2.19.jar
+nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar
+nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc10/19.14.0.0/ojdbc10-19.14.0.0.jar
+nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.3.5/postgresql-42.3.5.jar
+nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.15.3/nifi-kite-nar-1.15.3.nar
 nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.12.1/nifi-kite-nar-1.12.1.nar
 ```
 - Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
 - Updated JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
