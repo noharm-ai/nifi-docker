@@ -70,3 +70,8 @@ This wiki page will cover the main proccess of NoHarm integration:
 - Download tool from http://jdbcsql.sourceforge.net/
 - Run:  java -jar jdbcsql-1.0.zip -h hostname -p 1521 -U user -P pass -d service -m oracle "SELECT table_name FROM all_tables"
 
+### 7. Install SQL Plus
+
+- Install: sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
+- Run: sqlplus user/pass@localhost:1521/service
+
