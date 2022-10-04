@@ -72,6 +72,13 @@ This wiki page will cover the main proccess of NoHarm integration:
 
 ### 7. Install SQL Plus
 
-- Install: sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
-- Run: sqlplus user/pass@localhost:1521/service
+- Install: 
+```shell
+sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-basic-21.6.0.0.0-1.el8.x86_64.rpm
+sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
+```
+- Run: 
+```shell
+sqlplus user/pass@localhost:1521/service
+```
 
