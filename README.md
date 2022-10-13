@@ -82,3 +82,27 @@ sudo yum install -y yum install https://download.oracle.com/otn_software/linux/i
 sqlplus user/pass@localhost:1521/service
 ```
 
+### 8. Repair "no space left" issue
+
+Prune useless container and images:
+```shell
+$ docker system prune -a
+```
+
+Check fuller folders (if possible):
+```shell
+$ docker exec -t nifi sh -c "du -sh *"
+```
+Empty target folder (usually content_repository):
+```shell
+$docker exec -t nifi sh -c "rm content_repository/* -rf"
+```
+Restart nifi to repair empty folder:
+```shell
+docker exec -t nifi sh -c "./bin/nifi.sh restart"
+```
+
+You can do the same inside the container:
+```shell
+$ docker exec --user="root" -it nifi /bin/bash
+```
