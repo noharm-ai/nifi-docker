@@ -5,8 +5,8 @@ NiFi docker container customization from the [official Apache Nifi Docker Image]
 Pull the latest version of Apache Nifi Docker, build and run
 
 ```shell
-$ docker pull apache/nifi:1.16.1
-$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.16.1 --restart=always 
+$ docker pull apache/nifi:1.18.0
+$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always 
 ```
 Entrar em http://localhost:8080/ pela aba anônima.
 
@@ -16,12 +16,16 @@ Dive into container shell, add timezone and download JARs & NARs
 ```shell
 $ docker exec --user="root" -it nifi /bin/bash
 nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
+
 nifi@container_id:/opt/nifi/nifi-current$ cd lib
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/21.5.0.0/ojdbc8-21.5.0.0.jar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.4.0/postgresql-42.4.0.jar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.15.3/nifi-kite-nar-1.15.3.nar
-nifi@container_id:/opt/nifi/nifi-current/lib$ wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
+```
+Copy & Paste it
+```shell
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar
+wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/21.5.0.0/ojdbc8-21.5.0.0.jar
+wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.4.0/postgresql-42.4.0.jar
+wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.15.3/nifi-kite-nar-1.15.3.nar
+wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
 ```
 - Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
 - Updated JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
