@@ -110,3 +110,7 @@ You can do the same inside the container:
 ```shell
 $ docker exec --user="root" -it nifi /bin/bash
 ```
+### 9. Fix "docker.sock permission denied" issue
+```shell
+sudo chown $USER /var/run/docker.sock
+```
