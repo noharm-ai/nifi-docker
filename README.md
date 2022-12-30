@@ -114,3 +114,11 @@ $ docker exec --user="root" -it nifi /bin/bash
 ```shell
 sudo chown $USER /var/run/docker.sock
 ```
+
+### 10. Restarting Docker service if Docker is down: 
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```shell
+sudo service docker start
+```
+
+
