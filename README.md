@@ -69,12 +69,14 @@ $ ssh -f user@ip_address -L 8080:localhost:8080 -N
 This wiki page will cover the main proccess of NoHarm integration:
 [Basic Nifi Usage](https://github.com/noharm-ai/nifi-docker/wiki/Basic-Nifi-Usage)
 
-### 6. Testing JDBC Connection
+### Troubleshooting
+
+#### a. Testing JDBC Connection
 
 - Download tool from http://jdbcsql.sourceforge.net/
 - Run:  java -jar jdbcsql-1.0.zip -h hostname -p 1521 -U user -P pass -d service -m oracle "SELECT table_name FROM all_tables"
 
-### 7. Install SQL Plus
+#### b. Install SQL Plus
 
 - Install: 
 ```shell
@@ -86,7 +88,7 @@ sudo yum install -y yum install https://download.oracle.com/otn_software/linux/i
 sqlplus user/pass@localhost:1521/service
 ```
 
-### 8. Repair "no space left" issue
+#### c. Repair "no space left" issue
 
 Prune useless container and images:
 ```shell
@@ -110,12 +112,12 @@ You can do the same inside the container:
 ```shell
 $ docker exec --user="root" -it nifi /bin/bash
 ```
-### 9. Fix "docker.sock permission denied" issue
+#### d. Fix "docker.sock permission denied" issue
 ```shell
 sudo chown $USER /var/run/docker.sock
 ```
 
-### 10. Restarting Docker service if Docker is down: 
+#### e. Restarting Docker service if Docker is down: 
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```shell
 sudo service docker start
