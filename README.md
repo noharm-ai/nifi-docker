@@ -123,4 +123,7 @@ Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docke
 sudo service docker start
 ```
 
+#### e. Changing Properties from HTTPS to HTTP: 
+
+ - https://github.com/apache/nifi/blob/main/nifi-docker/dockerhub/sh/start.sh#L53-L69
 
