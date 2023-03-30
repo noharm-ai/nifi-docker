@@ -6,9 +6,22 @@ Pull the latest version of Apache Nifi Docker, build and run
 
 ```shell
 $ docker pull apache/nifi:1.18.0
-$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always 
 ```
-Entrar em http://localhost:8080/ pela aba anônima.
+Option 1: Run without authentication
+```shell
+$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always
+```
+Open the URL http://localhost:8080/nifi.
+
+Option 2: Run with authentication
+```shell
+docker run --name nifi -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_noharm -e SINGLE_USER_CREDENTIALS_PASSWORD=n0h@rmBR@2022   apache/nifi:1.18.0 --restart=always
+```
+Watch until the container is ready. You are looking for the "NiFi has started. The UI is available" message.
+```shell  
+docker logs -f nifi
+```
+Open the URL https://localhost:8443/nifi
 
 ### 2. Download Connectors and Add Timezone
 
@@ -78,12 +91,12 @@ This wiki page will cover the main proccess of NoHarm integration:
 
 #### b. Install SQL Plus
 
-- Install: 
+- Install:
 ```shell
 sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-basic-21.6.0.0.0-1.el8.x86_64.rpm
 sudo yum install -y yum install https://download.oracle.com/otn_software/linux/instantclient/216000/oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
 ```
-- Run: 
+- Run:
 ```shell
 sqlplus user/pass@localhost:1521/service
 ```
@@ -117,13 +130,12 @@ $ docker exec --user="root" -it nifi /bin/bash
 sudo chown $USER /var/run/docker.sock
 ```
 
-#### e. Restarting Docker service if Docker is down: 
+#### e. Restarting Docker service if Docker is down:
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```shell
 sudo service docker start
 ```
 
-#### e. Changing Properties from HTTPS to HTTP: 
+#### e. Changing Properties from HTTPS to HTTP:
 
  - https://github.com/apache/nifi/blob/main/nifi-docker/dockerhub/sh/start.sh#L53-L69
-
