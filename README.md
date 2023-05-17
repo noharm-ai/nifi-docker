@@ -34,9 +34,9 @@ nifi@container_id:/opt/nifi/nifi-current$ cd lib
 ```
 Copy & Paste it
 ```shell
-wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar
-wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/21.5.0.0/ojdbc8-21.5.0.0.jar
-wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.4.0/postgresql-42.4.0.jar
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar
+wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.2.0.0/ojdbc8-23.2.0.0.jar
+wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar
 wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.15.3/nifi-kite-nar-1.15.3.nar
 wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
 ```
