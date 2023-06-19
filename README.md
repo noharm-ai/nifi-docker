@@ -101,6 +101,8 @@ sudo yum install -y yum install https://download.oracle.com/otn_software/linux/i
 sqlplus user/pass@localhost:1521/service
 ```
 
+SQLPlus for Debian: https://askubuntu.com/questions/159939/how-to-install-sqlplus
+
 #### c. Repair "no space left" issue
 
 Prune useless container and images:
