@@ -5,21 +5,21 @@ NiFi docker container customization from the [official Apache Nifi Docker Image]
 Pull the latest version of Apache Nifi Docker, build and run
 
 ```shell
-$ docker pull apache/nifi:1.18.0
+$ docker pull apache/nifi:1.27.0
 ```
 Option 1: Run without authentication
 ```shell
-$ docker run --name nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always
+$ docker run --name noharm-nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always
 ```
 Open the URL http://localhost:8080/nifi.
 
 Option 2: Run with authentication
 ```shell
-docker run --name nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_user -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.18.0 --restart=always
+docker run --name noharm-nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_user -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.18.0 --restart=always
 ```
 Watch until the container is ready. You are looking for the "NiFi has started. The UI is available" message.
 ```shell  
-docker logs -f nifi
+docker logs -f noharm-nifi
 ```
 Open the URL https://localhost:8443/nifi
 
@@ -29,20 +29,23 @@ Dive into container shell, add timezone and download JARs & NARs
 ```shell
 $ docker exec --user="root" -it nifi /bin/bash
 nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
-
+nifi@container_id:/opt/nifi/nifi-current$ wget https://github.com/noharm-ai/nifi-composer/blob/main/genkeypair.sh
+nifi@container_id:/opt/nifi/nifi-current$ ./genkeypair.sh
 nifi@container_id:/opt/nifi/nifi-current$ cd lib
 ```
 Copy & Paste it
 ```shell
 wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar
 wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.2.0.0/ojdbc8-23.2.0.0.jar
-wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar
+wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 wget https://repo1.maven.org/maven2/org/apache/nifi/nifi-kite-nar/1.15.3/nifi-kite-nar-1.15.3.nar
 wget https://truststore.pki.rds.amazonaws.com/sa-east-1/sa-east-1-bundle.pem
 ```
-- Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download.html
+- Updated JDBC PostgreSQL Driver at https://jdbc.postgresql.org/download
 - Updated JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
 - Updated JDBC MySQL Driver at https://dev.mysql.com/downloads/connector/j/
+
+
 
 ### 3. Restart Nifi Web Service
 
