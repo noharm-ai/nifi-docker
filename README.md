@@ -9,13 +9,13 @@ $ docker pull apache/nifi:1.27.0
 ```
 Option 1: Run without authentication
 ```shell
-$ docker run --name noharm-nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.18.0 --restart=always
+$ docker run --log-opt max-size=100m --name noharm-nifi -e NIFI_WEB_HTTP_PORT='8080' -p 8080:8080 -d apache/nifi:1.27.0 --restart=always
 ```
 Open the URL http://localhost:8080/nifi.
 
 Option 2: Run with authentication
 ```shell
-docker run --name noharm-nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_user -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.18.0 --restart=always
+docker run --log-opt max-size=100m --name noharm-nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_user -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.27.0 --restart=always
 ```
 Watch until the container is ready. You are looking for the "NiFi has started. The UI is available" message.
 ```shell  
