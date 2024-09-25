@@ -47,6 +47,7 @@ wget https://truststore.pki.rds.amazonaws.com/sa-east-1/sa-east-1-bundle.pem
 - Updated JDBC MySQL Driver at https://dev.mysql.com/downloads/connector/j/
 
 Configure aws
+```shell
 $ docker exec --user="root" -it noharm-nifi apt update
 $ docker exec --user="root" -it noharm-nifi apt install nano vim awscli -y
 $ exit
@@ -58,6 +59,7 @@ Output format: None
 $ aws s3 ls #para testar o acesso
 $ exit
 $ docker restart noharm-nifi
+```
 
 ### 4. Access Nifi Web Service
 
