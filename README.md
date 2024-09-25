@@ -15,7 +15,7 @@ Open the URL http://localhost:8080/nifi.
 
 Option 2: Run with authentication
 ```shell
-docker run --log-opt max-size=100m --name noharm-nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_user -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.27.0 --restart=always
+docker run --log-opt max-size=100m --name noharm-nifi -e NIFI_WEB_HTTPS_PORT='8443' -p 8443:8443 -d -e SINGLE_USER_CREDENTIALS_USERNAME=nifi_noharm -e SINGLE_USER_CREDENTIALS_PASSWORD=nifi_pass   apache/nifi:1.27.0 --restart=always
 ```
 Watch until the container is ready. You are looking for the "NiFi has started. The UI is available" message.
 ```shell  
@@ -28,10 +28,11 @@ Open the URL https://localhost:8443/nifi
 Dive into container shell, add timezone and download JARs & NARs
 ```shell
 $ docker exec --user="root" -it nifi /bin/bash
-nifi@container_id:/opt/nifi/nifi-current$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
-nifi@container_id:/opt/nifi/nifi-current$ wget https://github.com/noharm-ai/nifi-composer/blob/main/genkeypair.sh
-nifi@container_id:/opt/nifi/nifi-current$ ./genkeypair.sh
-nifi@container_id:/opt/nifi/nifi-current$ cd lib
+$ echo "java.arg.8=-Duser.timezone=America/Sao_Paulo" >> conf/bootstrap.conf
+$ wget https://raw.githubusercontent.com/noharm-ai/nifi-composer/refs/heads/main/genkeypair.sh
+$ chmod +x genkeypair.sh
+$ ./genkeypair.sh
+$ cd lib
 ```
 Copy & Paste it
 ```shell
@@ -45,34 +46,22 @@ wget https://truststore.pki.rds.amazonaws.com/sa-east-1/sa-east-1-bundle.pem
 - Updated JDBC Oracle Driver at https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
 - Updated JDBC MySQL Driver at https://dev.mysql.com/downloads/connector/j/
 
-
-
-### 3. Restart Nifi Web Service
-
-Inside container, stop the service. It will kick you out of the container.
-
-```shell
-nifi@container_id:/opt/nifi/nifi-current$ ./bin/nifi.sh stop
-```
-
-Restart you container
-```shell
-$ docker start nifi
-```
-
-Update the restart policy
-```shell
-$ docker update --restart=always nifi
-```
-
-Read current restart policy
-```shell
-docker inspect -f "{{ .HostConfig.RestartPolicy }}" nifi
-```
+Configure aws
+$ docker exec --user="root" -it noharm-nifi apt update
+$ docker exec --user="root" -it noharm-nifi apt install nano vim awscli -y
+$ exit
+$ docker exec --user="nifi" -it noharm-nifi /bin/bash
+$ aws configure
+Access key ID and Secret access key: available at https://noharm.odoo.com/odoo/knowledge/34/knowledge/72/knowledge/92
+Region: sa-east-1
+Output format: None
+$ aws s3 ls #para testar o acesso
+$ exit
+$ docker restart noharm-nifi
 
 ### 4. Access Nifi Web Service
 
-Now you can access your Nifi web service at http://localhost:8080/nifi/
+Now you can access your Nifi web service at http://localhost:8080/nifi/ or https://localhost:8443/nifi/
 
 If you are in a VPN environment remember to tunnel 8080 port
 ```shell
